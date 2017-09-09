@@ -1,0 +1,5 @@
+#CONTRIBUTORS
+
+	AlFrancis201 = Al Francis Orias
+	FelixSimonB = Felix Simon Barredo
+	09267924771 = Jayson Cruz
