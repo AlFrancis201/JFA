@@ -33,35 +33,22 @@
 			</ul>
 		</div>
 		<div class="col-md-9 contents">
-			<?php
-				echo "<p class='text-danger'>Welcome $name!</p>";
-			?>
+			
 			<table class="table table-striped table-hover table-condensed table-responsive">
 				<thead>
 					<tr>
-						<th>ID NO.</th>
-						<th>LAST NAME</th>
-						<th>FIRST NAME</th>
-						<th>MIDDLE NAME</th>
-						<th>SEX</th>
-						<th>ACTION</th>
+						<th>COURSE ID</th>
+						<th>NAME</th>
+						<th>DESCRIPTION</th>
 					</tr>
 				</thead>
 				<tbody>
 				<?php
-				foreach($students as $s){
+				foreach($courses as $s){
 					echo '	<tr>	
-								<td>'.$s['idno'].'</td>
-								<td>'.$s['lastname'].'</td>
-								<td>'.$s['firstname'].'</td>
-								<td>'.$s['middlename'].'</td>
-								<td>'.$s['course'].'</td>
-								<td>'.$s['sex'].'</td>
-								<td>
-									<a href="'.base_url('students/profile/'.$s['idno']).'">View</a> |
-									<a href="">Edit</a> |
-									<a href="" class="delete">Delete</a>
-								</td>
+								<td>'.$s['course_id'].'</td>
+								<td>'.$s['name'].'</td>
+								<td>'.$s['course_desc'].'</td>
 							</tr>
 							';
 				}
@@ -69,7 +56,7 @@
 				</tbody>
 			</table>
 			<div class="">	 				
-				<a href="boots/add_student" class="btn btn-primary btn-lg">New Student</a>
+				<a href="<?php echo base_url('boots/add_course');?>" class="btn btn-primary btn-lg">New Course</a>
 			</div>
 		</div>
 	</div>

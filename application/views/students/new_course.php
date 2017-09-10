@@ -33,7 +33,7 @@
 			</ul>
 		</div>
 		<div class="col-md-8 contents">
-			<p class="lead">Add New Student</p>
+			<p class="lead">Add New Course</p>
 			<form role="form" class="" method="post">
 				
 				<div class="text-danger">
@@ -45,36 +45,16 @@
 				</div>
 				
 				<div class="form-group">
-					<label for="idno">ID No.:</label>
-					<input type="text" class="form-control" id="idno" name="idno" />
+					<label for="course_id">Course ID:</label>
+					<input type="text" class="form-control" id="course_id" name="course_id" />
 				</div>
 				<div class="form-group">
-					<label for="lname">Last Name:</label>
-					<input type="text" class="form-control" id="lname" name="lname" />
+					<label for="name">Name:</label>
+					<input type="text" class="form-control" id="name" name="name" />
 				</div>	
 				<div class="form-group">
-					<label for="fname">First Name:</label>
-					<input type="text" class="form-control" id="fname" name="fname" />
-				</div>
-				<div class="form-group">
-					<label for="mname">Middle Name:</label>
-					<input type="text" class="form-control" id="mname" name="mname" />
-				</div>
-				<div class="form-group">
-					<label for="course">Course:</label>
-					<select class="form-control" id="course" name="course">
-						<?php
-							foreach($courses as $c){
-								echo "<option value=".$c['name'].">".$c['name']."</option>";
-							}
-						?>
-						<!--<option value="BSIT">BSIT</option>-->
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="sex">Sex</label>
-					<input type="radio" class="" id="sex" name="sex" value="M" /> Male
-					<input type="radio" class="" id="sex" name="sex" value="F" /> Female
+					<label for="course_desc">Course Description:</label>
+					<input type="text" class="form-control" id="course_desc" name="course_desc" />
 				</div>	
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">
@@ -120,8 +100,8 @@
 if( isset($saved) && $saved==TRUE ){
 ?>
 <script type="text/javascript">
-	alert("The new student record was successfully saved!");
-	location.href = '<?php echo base_url('boots'); ?>';
+	alert("The new course record was successfully saved!");
+	location.href = '<?php echo base_url('boots/course'); ?>';
 </script>
 <?php
 }

@@ -14,9 +14,7 @@ class Boots extends CI_Controller {
 		
 		$header_data['title'] = "JaysonAlFelix";
 		$data['name'] = "User";
-		
-		$condition = array('course'=>'BSIT');
-		
+		$condition=null;
 		$rs = $this->Students->read($condition);
 
 		foreach($rs as $r){
@@ -35,14 +33,37 @@ class Boots extends CI_Controller {
 		
 		$this->load->view('include/header',$header_data);
 		$this->load->view('students/contents', $data);
-		$this->load->view('include/footer');
-		
+		$this->load->view('include/footer');		
 	}	
-	
+	public function course(){
+		$header_data['title'] = "JaysonAlFelix";	
+		$c = $this->Students->cread();	
+		foreach($c as $r){
+			$info = array(
+						'course_id' => $r['course_id'],
+						'name' => $r['name'],
+						'course_desc' => $r['course_desc'],				
+						);
+			$courses[] = $info;
+		}
+		$data['courses']=$courses;
+		$this->load->view('include/header',$header_data);
+		$this->load->view('students/course',$data);
+		$this->load->view('include/footer');
+	}
 	public function add_student(){
 		
 		$data = array();	
-		
+		$c = $this->Students->cread();	
+		foreach($c as $r){
+			$info = array(
+						'course_id' => $r['course_id'],
+						'name' => $r['name'],
+						'course_desc' => $r['course_desc'],				
+						);
+			$courses[] = $info;
+		}
+		$data['courses']=$courses;
 		if( $_SERVER['REQUEST_METHOD']=='POST'){ //form was submitted
 			//save the new student
 			//do some stuff
@@ -87,14 +108,60 @@ class Boots extends CI_Controller {
 		}
 		
 		$header_data['title'] = "Add New Student";
-
+		
 			
 		$this->load->view('include/header',$header_data);
 		$this->load->view('students/new_student', $data);
 		$this->load->view('include/footer');
 			
 	}
+	
+	public function add_course(){
+		
+		$data = array();	
+		
+		if( $_SERVER['REQUEST_METHOD']=='POST'){ //form was submitted
+			
+			$validate = array (
+				array('field'=>'course_id','label'=>'Course ID','rules'=>'trim|required|min_length[2]'),
+				array('field'=>'name','label'=>'Name','rules'=>'trim|required|min_length[1]'),
+				array('field'=>'course_desc','label'=>'Course Description','rules'=>'trim|required|min_length[1]'),				
+			);
 
+			$this->form_validation->set_rules($validate);
+			
+			if ($this->form_validation->run()===FALSE){
+				$data['errors'] = validation_errors();
+			}
+			else{ //save the form
+				
+				//check for duplicate
+				$record = array(
+								'course_id'=>$_POST['course_id'],
+								'name'=>$_POST['name'],
+								'course_desc'=>$_POST['course_desc'],
+							);
+							
+				$insert_id = $this->Students->ccreate($record);
+				
+				$data['saved'] = TRUE;
+				
+			}
+			
+		}
+		else{ //display blank form
+				
+		}
+		
+		$header_data['title'] = "Add New Course";
+
+			
+		$this->load->view('include/header',$header_data);
+		$this->load->view('students/new_course', $data);
+		$this->load->view('include/footer');
+			
+	}
+	
 	public function modal(){
 		$header_data['title'] = "Add New Student";	
 		$this->load->view('include/header',$header_data);	
