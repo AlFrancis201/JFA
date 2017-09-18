@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2017 at 03:24 PM
+-- Generation Time: Sep 18, 2017 at 05:08 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -19,6 +19,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `students`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `course_id` int(3) NOT NULL,
+  `name` varchar(10) NOT NULL,
+  `course_desc` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_id`, `name`, `course_desc`) VALUES
+(37, 'BSIT', 'Information Technology'),
+(36, 'BSCS', 'Computer Science'),
+(26, 'BSES', 'Environmental Science'),
+(11, 'BFA', 'Fine Arts'),
+(21, 'BSECE', 'Electrical Engineering'),
+(51, 'BA', 'Architecture');
 
 -- --------------------------------------------------------
 
@@ -42,6 +66,7 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`idno`, `lname`, `fname`, `mname`, `course`, `sex`) VALUES
 ('15-037-001', 'Cruz', 'Jayson', 'M', 'BSIT', 'M'),
 ('15-037-003', 'Barredo', 'Felix Simon', 'B', 'BSIT', 'M'),
+('15-037-020', 'Panganiban', 'Patrick', 'B', 'BFA', 'M'),
 ('15-037-064', 'Orias', 'Al Francis', 'P', 'BSIT', 'F');
 
 --
